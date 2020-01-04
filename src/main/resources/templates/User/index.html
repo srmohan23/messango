@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Messango Login &amp; Register</title>
+
+        <!-- CSS -->        
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link th:href="@{/assets/bootstrap/css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+        <link th:href="@{/assets/font-awesome/css/font-awesome.min.css}" type="text/css" rel="stylesheet" />
+        <link th:href="@{/assets/css/form-elements.css}" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+        <link th:href="@{/assets/bootstrap/css/bootstrap-datetimepicker.css}" type="text/css" rel="stylesheet" />
+        
+        <!-- Favicon and touch icons -->
+        
+        <link rel="shortcut icon" th:href="@{/assets/ico/favicon.png}"/>
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/assets/ico/apple-touch-icon-144-precomposed.png}"/>
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/assets/ico/apple-touch-icon-114-precomposed.png}"/>
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/assets/ico/apple-touch-icon-72-precomposed.png}"/>
+        <link rel="apple-touch-icon-precomposed" th:href="@{/assets/ico/apple-touch-icon-57-precomposed.png}"/>
+                
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                	
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>Messango</strong> Login &amp; Register Forms</h1>
+                            <div class="description">
+                            	<p>
+	                            	<strong>"Messango"</strong> is a free Chanting Application. 	                            	
+                            	</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-5">
+                        	
+                        	<div class="form-box">
+	                        	<div class="form-top">
+	                        		<div class="form-top-left">
+	                        			<h3>Login to our site</h3>
+	                            		<p>Enter Email Id and password to log on:</p>
+	                        		</div>
+	                        		<div class="form-top-right">
+	                        			<i class="fa fa-key"></i>
+	                        		</div>
+	                        		<div class="alert alert-danger" role="alert" th:if="${param.error}">
+									   The email or password is incorrect!
+									 </div>
+	                            </div>
+	                            <div class="form-bottom">
+				                    <form role="form" th:action="@{/login}" method="post" class="login-form">
+				                    	<div class="form-group">
+				                    		<label class="sr-only" for="email">EmailId</label>
+				                        	<input type="text" name="email" placeholder="username@gmail.com" class="form-username form-control" id="email">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="password">Password</label>
+				                        	<input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
+				                        </div>
+				                        <button type="submit" class="btn">Sign in!</button>
+				                        <br/>
+				                        <div class="form-group">
+				                        	<div class="margin-top20 text-center">  <a th:href="@{/forgot}"> Forgot Password</a></div>
+				                        </div>
+				                    </form>
+			                    </div>
+		                    </div>
+		                
+		                	<div class="social-login">
+	                        	<h3>...or login with:</h3>
+	                        	<div class="social-login-buttons">
+		                        	<a class="btn btn-link-1 btn-link-1-facebook" href="#">
+		                        		<i class="fa fa-facebook"></i> Facebook
+		                        	</a>
+		                        	<a class="btn btn-link-1 btn-link-1-twitter" href="#">
+		                        		<i class="fa fa-twitter"></i> Twitter
+		                        	</a>
+		                        	<a class="btn btn-link-1 btn-link-1-google-plus" href="#">
+		                        		<i class="fa fa-google-plus"></i> Google Plus
+		                        	</a>
+	                        	</div>
+	                        </div>
+	                        
+                        </div>
+                        
+                        <div class="col-sm-1 middle-border"></div>
+                        <div class="col-sm-1"></div>
+                        	
+                        <div class="col-sm-5">
+                        	
+                        	<div class="form-box">
+                        		<div class="form-top">
+	                        		<div class="form-top-left">
+	                        			<h3>Sign up now</h3>
+	                            		<p>Fill in the form below to get instant access:</p>
+	                        		</div>
+	                        		<div class="form-top-right">
+	                        			<i class="fa fa-pencil"></i>
+	                        		</div>
+	                        		 <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}">
+	                            </div>
+	                            <div class="form-bottom">
+				                    <form role="form" method="POST" th:action="@{/signup}" th:object="${user}" class="registration-form">
+				                    	<div class="form-group">
+				                    		<label class="sr-only" for="firstname">First name</label>
+				                        	<input type="text" th:field="*{firstname}" name="firstname" placeholder="First name..." class="form-first-name form-control" id="firstname">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="lastname">Last name</label>
+				                        	<input type="text" th:field="*{lastname}" name="lastname" placeholder="Last name..." class="form-last-name form-control" id="lastname">
+				                        </div>
+										<div class="form-group">
+											<label class="sr-only" for="form-last-name">Gender</label>
+											<label class="radio-inline"> <input type="radio"
+												th:field="*{gender}" name="gender" th:value="true" checked>Male
+											</label>
+											<label class="radio-inline"> <input type="radio"
+												th:field="*{gender}" name="gender" th:value="false">Female
+											</label>
+										</div>
+										<div class="form-group">
+				                        	<label class="sr-only" for="dob">Date of Birth</label>
+				                        	<div class='input-group date' id='datetimepicker1'>
+									   `       <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
+									          <input type="text" th:field="*{dob}" name="dob" placeholder="Date of Birth" class="form-last-name form-control" id="dob">
+				        					</div>
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="reg-email">Email</label>
+				                        	<input type="text" name="reg-email" th:field="*{email}"  placeholder="username@gmail.com"  class="form-email form-control" id="reg-email">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="reg-password">Password</label>
+				                        	<input type="text" name="reg-password" th:field="*{password}" placeholder="Password..." class="form-last-name form-control" id="reg-password">
+				                        </div>
+				                        <button type="submit" class="btn">Sign me up!</button>
+				                    </form>
+			                    </div>
+                        	</div>
+                        	
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Footer -->
+        <footer>
+        	<div class="container">
+        		<div class="row">
+        			
+        			<div class="col-sm-8 col-sm-offset-2">
+        				<div class="footer-border"></div>
+        				<p>Made by Rajmohan Sakkarai at <!-- <a href="http://azmind.com" target="_blank"><strong>AZMIND</strong></a> --> 
+        					having a lot of fun. <i class="fa fa-smile-o"></i></p>
+        			</div>
+        			
+        		</div>
+        	</div>
+        </footer>
+
+        <!-- Javascript -->        
+        <script type="text/javascript" th:src="@{/assets/js/jquery-1.11.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{/assets/js/jquery.backstretch.min.js}"></script>
+        <script type="text/javascript" th:src="@{/assets/js/scripts.js}"></script>
+        <script type="text/javascript" th:src="@{/assets/bootstrap/js/moment-with-locales.js}"></script>
+        <script type="text/javascript" th:src="@{/assets/bootstrap/js/bootstrap-datetimepicker.js}"></script>
+        <!--[if lt IE 10]>
+            <script src="../static/assets/js/placeholder.js" th:src="@{assets/js/placeholder.js}"></script>
+        <![endif]-->
+		<script type="text/javascript">
+		 $(function () {
+		     $('#datetimepicker1').datetimepicker({
+		    	    format:'YYYY-MM-DD'
+		         });
+		 });
+		 </script>
+    </body>
+
+</html>
